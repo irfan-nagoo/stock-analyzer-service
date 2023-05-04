@@ -37,6 +37,7 @@ public class ActiveMQConfig {
     public ActiveMQConnectionFactory connectionFactory() {
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connectionFactory.setBrokerURL(brokerUrl);
+        connectionFactory.setUseAsyncSend(true);
         return connectionFactory;
     }
 

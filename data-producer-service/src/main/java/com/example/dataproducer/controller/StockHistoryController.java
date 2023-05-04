@@ -6,6 +6,7 @@ import com.example.dataproducer.response.StockHistoryResponse;
 import com.example.dataproducer.service.StockHistoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -44,7 +45,7 @@ public class StockHistoryController {
      * @param files  List of csv files with stock history records
      * @return Response with status and message
      */
-    @PostMapping("/ticker/{ticker}/bulk-save")
+    @PostMapping(value = "/ticker/{ticker}/bulk-save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public BaseResponse processBulkStockHistory(@PathVariable("ticker") String ticker
             , @RequestParam("files") List<MultipartFile> files) {
         return stockHistoryService.processBulkStockHistory(ticker, files);
